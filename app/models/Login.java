@@ -21,6 +21,9 @@ import play.db.*;
 			catch (SQLException e) {
 				e.printStackTrace();
 	}
- 
-}
-}
+			String id = request.getParameter("id");
+			String pas= request.getParameter("user_id");
+			
+			
+	}
+	}

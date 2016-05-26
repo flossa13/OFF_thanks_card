@@ -47,7 +47,7 @@ input[type="password"] {
 }
  
 .submit input {
-  background: #f78181;
+  background: #00ff00;
   border-radius: 20px;
   font-family: Courier New;
   color: #fff;
@@ -63,7 +63,7 @@ input[type="password"] {
 }
 
 .submit2 input {
-  background: #f78181;
+  background: #00ff00;
   border-radius: 20px;
   font-family: Courier New;
   color: #fff;
@@ -79,7 +79,7 @@ input[type="password"] {
 }
  
 #form{
-  background: #000066;
+  background: #0000ff;
   border-radius: 20px;
   font-family: Courier New;
   color: #ffffff;
