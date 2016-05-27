@@ -1,6 +1,6 @@
 @(cardlist:List[String],userlist:List[String]
 ,helplist:List[String],sentlist:List[String]
-,count:Integer)
+,readlist:List[String],count:Integer)
 
 <!DOCTYPE html>
 <html>
@@ -12,9 +12,9 @@
 
 
 
- 	<table bgcolor="#A7F1FF" border>
+ 	<table bgcolor="#A7F1FF" border="0">
 
- 	<tr>
+ 	<tr bgcolor="#66FFFF">
 		<td style="font-size:200%">受信日</td>
 		<td style="font-size:200%">送り主</td>
 		<td style="font-size:200%">件名</td>
@@ -22,11 +22,20 @@
 	</tr>
 
  		@for(num <- 1 to count){
-			<tr>
+
+ 			@if(readlist(num-1)=="t"){
+			<tr bgcolor="#99FFFF">
+			}else{
+			<tr bgcolor="#99FFFF">
+			}
+
 			<td style="font-size:200%">@cardlist(num -1)</td>
 			<td style="font-size:200%">@userlist(num -1)</td>
 			<td style="font-size:200%">@helplist(num -1)</td>
 			<td style="font-size:200%">@sentlist(num -1)</td>
+
+
+
 			</tr>
 		}
 	</table>

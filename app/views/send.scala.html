@@ -11,9 +11,9 @@
  <body bgcolor="#bbbbbb">
 
 
- 	<table bgcolor="#FFBEDA" border>
+ 	<table  border="0">
 
-		<tr>
+		<tr bgcolor="#FFBBFF">
 		<td style="font-size:200%">送信日</td>
 		<td style="font-size:200%">宛先</td>
 		<td style="font-size:200%">件名</td>
@@ -23,7 +23,7 @@
 
 
 		@for(num <- 1 to count){
-			<tr>
+			<tr bgcolor="#FFCCFF">
 			<td style="font-size:200%">@cardlist(num -1)</td>
 			<td style="font-size:200%">@userlist(num -1)</td>
 			<td style="font-size:200%">@helplist(num -1)</td>
