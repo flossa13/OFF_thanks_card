@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head >
+  <meta charset="UTF-8">
+  <title>送受信画面</title>
+  <a href="リンク先">
+  <img  src="@routes.Assets.versioned("images/images.jpg")" width="150" height="200" align="left">
+
+  </a>
+  <h1  style= "font-size:300%;margin-left:330px">送受信履歴</h1>
+ </head>
+ <body>
+ <br>
+ <h1 style="margin-top:120px">メニューバー</h1>
+ <table border align="left"  style="font-size:200%">
+	<tr>
+	 <td height="60"><a href="@routes.HomeController.top()">トップ</a></td>
+	</tr>
+	<tr>
+	 <td height="60"><a href="リンク先">過去のカード</a></td>
+	</tr>
+	<tr>
+	 <td height="60"><a href="リンク先">カード作成</a></td>
+	</tr>
+	</table>
+
+  <h1 style= "margin-left:350px"><a href="@routes.HomeController.send()"><font color="#000000">送信履歴</font-color></a></h1>
+  <iframe src="@routes.HomeController.send()" width="500" height="200" border="1"
+  style="position:relative; left:163px"></iframe>
+
+  <h1 style= "margin-left:350px"><a href="@routes.HomeController.receive()"><font color="#000000">受信履歴</font></a></h1>
+  <iframe src="@routes.HomeController.receive()" width="500" height="200" border="1"
+  style="position:relative; left:350px"></iframe>
+  </body>
+</html>

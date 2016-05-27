@@ -1,0 +1,38 @@
+@(cardlist:List[String],userlist:List[String]
+,helplist:List[String],sentlist:List[String]
+,count:Integer)
+
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>送信画面</title>
+ </head>
+ <body bgcolor="#bbbbbb">
+
+
+ 	<table bgcolor="#FFBEDA" border>
+
+		<tr>
+		<td style="font-size:200%">送信日</td>
+		<td style="font-size:200%">宛先</td>
+		<td style="font-size:200%">件名</td>
+		<td style="font-size:200%">内容</td>
+		</tr>
+
+
+
+		@for(num <- 1 to count){
+			<tr>
+			<td style="font-size:200%">@cardlist(num -1)</td>
+			<td style="font-size:200%">@userlist(num -1)</td>
+			<td style="font-size:200%">@helplist(num -1)</td>
+			<td style="font-size:200%">@sentlist(num -1)</td>
+			</tr>
+		}
+	</table>
+
+
+ </body>
+</html>

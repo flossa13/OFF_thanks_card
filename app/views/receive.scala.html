@@ -1,0 +1,23 @@
+@(cardlist:List[String])
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>受信画面</title>
+ </head>
+ <body bgcolor="#bbbbbb">
+
+
+
+ 	<table bgcolor="#A7F1FF" border>
+ 		@for(receive <- cardlist){
+		<tr>
+			<td style="font-size:200%">@receive</td>
+		</tr>
+		}
+
+	</table>
+
+
+ </body>
+</html>
