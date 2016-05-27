@@ -28,7 +28,7 @@ public class AuthController extends Controller {
 		        Form<Login> form = formFactory.form(Login.class).bindFromRequest();
 
 		        if (form.hasErrors()) {
-		            return badRequest(login1.render(form),login2.render(form));
+		            return badRequest(login1.render(form));
 		        } else {
 		            Login login = form.get();
 		            return ok("ようこそ " + login.username + " さん!!");

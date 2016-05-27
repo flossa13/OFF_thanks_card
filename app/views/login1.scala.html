@@ -1,0 +1,32 @@
+@(loginForm: Form[Login])
+
+@import helper._
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>掲示板ログイン</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/login.css")">
+	<script type="text/javascript" src="login.js">
+	</script>
+</head>
+<body>
+<div id="form">
+	  @form(routes.AuthController.authenticate()) {
+	<img src="@routes.Assets.versioned("images/login.jpg")"width="80" height="80" alt="ロゴ">
+    <p class="form-title">株式会社　演習開発</p>
+    <form action="login">
+        <h3><p>社員ID</p></h3>
+        <p class="username"><input type="text" name="username" maxlength="8" autocomplete="OFF" /></p>
+        <h3><p>社員PASS</p></h3>
+        <p class="password"><input type="password" name="password" maxlength="8" autocomplete="OFF" /></p>
+        <p class="submit"><input type="submit" value="ログイン" /></p>
+        
+        
+        <p class="submit2"><a href="@routes.AuthController.login2()"><input type="button" value="管理者用業務"></a></p>
+    </form>
+</div>
+}
+</body>
+</html>
