@@ -1,4 +1,5 @@
-@(sentlist: List[String])
+@(sentlist:List[String],userlist:List[String],helplist:
+List[String],listkazu:Integer)
 
 <!DOCTYPE html>
 <html>
@@ -36,17 +37,16 @@
 
 		<table>
 
-
-		@for(sent <- sentlist){
+		@for(i <- 1 to listkazu){
 			<tr>
 				<td>
-					@sent
+					@sentlist.get(i-1)
 				</td>
 				<td>
-					from:@sent
+					from:@userlist.get(i-1)
 				</td>
 				<td>
-					@sent
+					@helplist.get(i-1)
 				</td>
 				<td>
 					評価
@@ -58,8 +58,8 @@
 					</form>
 				</td>
 			</tr>
-
 			}
+
 		</table>
 
 <footer>OFF</footer>
