@@ -63,18 +63,26 @@ public class HomeController extends Controller {
 	public Result receive() {
 		Connection connection = DB.getConnection();
 		ArrayList<String> cardlist = new ArrayList<String>();
-
+		ArrayList<String> userlist = new ArrayList<String>();
+		ArrayList<String> helplist = new ArrayList<String>();
+		ArrayList<String> sentlist = new ArrayList<String>();
+		ArrayList<String> readlist = new ArrayList<String>();
 	 	try {
-			PreparedStatement Ssql = connection.prepareStatement("select *  from division_table");
+			PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_Card_table");
 			ResultSet rs = Ssql.executeQuery();
 			while (rs.next()) {
-				cardlist.add(rs.getString("division_id"));
+				cardlist.add(rs.getString("today"));
+				userlist.add(rs.getString("send_user_id"));
+				helplist.add(rs.getString("help_content"));
+				sentlist.add(rs.getString("sent_content"));
+				readlist.add(rs.getString("read_card"));
 			}
 	 	}
 	 	catch (Exception e) {
 			e.printStackTrace();
 	 	}
-	 	return ok(receive.render(cardlist));
+	 	int count = cardlist.size();
+	 	return ok(receive.render(cardlist,userlist,helplist,sentlist,readlist,count));
 	}
 
 
