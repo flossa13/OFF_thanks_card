@@ -1,5 +1,11 @@
 package controllers;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import play.db.DB;
 import play.mvc.*;
 
 import views.html.*;
@@ -16,14 +22,67 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
+
+
+
     public Result index() {
         return ok(index.render("Your new application is ready."));
     }
-    public Result login1() {
-    	return ok(login1.render());
+
+    // 送受信画面を表示
+    public Result home() {
+    	return ok(home.render());
     }
-    public Result login2() {
-    	return ok(login2.render());
+
+	 //送信履歴を表示
+	public Result send() {
+		Connection connection = DB.getConnection();
+		ArrayList<String> cardlist = new ArrayList<String>();
+		ArrayList<String> userlist = new ArrayList<String>();
+		ArrayList<String> helplist = new ArrayList<String>();
+		ArrayList<String> sentlist = new ArrayList<String>();
+
+	 	try {
+			PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_Card_table");
+			ResultSet rs = Ssql.executeQuery();
+			while (rs.next()) {
+				cardlist.add(rs.getString("today"));
+				userlist.add(rs.getString("receive_user_id"));
+				helplist.add(rs.getString("help_content"));
+				sentlist.add(rs.getString("sent_content"));
+			}
+	 	}
+	 	catch (Exception e) {
+			e.printStackTrace();
+	 	}
+	 	int count = cardlist.size();
+	 	return ok(send.render(cardlist,userlist,helplist,sentlist,count));
+	}
+
+    //受信履歴を表示
+	public Result receive() {
+		Connection connection = DB.getConnection();
+		ArrayList<String> cardlist = new ArrayList<String>();
+
+	 	try {
+			PreparedStatement Ssql = connection.prepareStatement("select *  from division_table");
+			ResultSet rs = Ssql.executeQuery();
+			while (rs.next()) {
+				cardlist.add(rs.getString("division_id"));
+			}
+	 	}
+	 	catch (Exception e) {
+			e.printStackTrace();
+	 	}
+	 	return ok(receive.render(cardlist));
+	}
+
+
+    //トップ画面を表示
+    public Result top() {
+    	return ok(top.render());
     }
+
+
 
 }
