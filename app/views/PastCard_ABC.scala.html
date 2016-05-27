@@ -1,6 +1,6 @@
-@(idlist:List[String],helplist:List[String],sentlist:List[String],listkazu:Integer)
+@(daylist:List[String],helplist:List[String],sentlist:List[String],listkazu:Integer)
 
-@PastCard_common("新しい順") {
+@PastCard_common("評価") {
 <div id="form">
 <p class="submit"><input type="button" value="ログアウト"></p>
 
@@ -10,7 +10,7 @@
 
 
 <nav>
-	<p><a href="@routes.HomeController.PastCard_resultTop()">部署別集計ページ</a></p>
+	<p><a href="@routes.HomeController.PastCard_resultTop()">部署集計ページ</a></p>
 	<br>
 	<p>ソート</p>
 	<p><a href="@routes.HomeController.PastCard()">新しい順</a></p>
@@ -26,10 +26,10 @@
 		@for(i <- 1 to listkazu){
 			<tr>
 				<td>
-					@idlist.get(i-1)
+					@daylist.get(i-1)
 				</td>
 				<td>
-					件名：@helplist.get(i-1)
+					from:@helplist.get(i-1)
 				</td>
 				<td>
 					@sentlist.get(i-1)
