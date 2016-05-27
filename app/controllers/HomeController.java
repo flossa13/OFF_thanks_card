@@ -38,68 +38,154 @@ public class HomeController extends Controller {
     	return ok(help.render());
     }
 
-    public Result PastCord() {
+//過去カード一覧、新しい順で表示 defaultPage
+    public Result PastCard() {
     	Connection connection = DB.getConnection();
-    	ArrayList<String> userlist = new ArrayList<>();
+    	ArrayList<String> idlist = new ArrayList<>();
     	ArrayList<String> helplist = new ArrayList<>();
     	ArrayList<String> sentlist = new ArrayList<>();
 
-
     	 try {
-    		PreparedStatement Ssql = connection.prepareStatement("select *  from division_table");
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_card_table order by card_id desc");
     		ResultSet rs = Ssql.executeQuery();
     		while (rs.next()) {
-    			userlist.add(rs.getString("division_id"));
-    			helplist.add(rs.getString("division_namen"));
-    			sentlist.add(rs.getString("authority"));
+    			idlist.add(rs.getString("card_id"));
+    			helplist.add(rs.getString("help_content"));
+    			sentlist.add(rs.getString("sent_content"));
     		}
-
-
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
-    	int listkazu=userlist.size();
-    	return ok(PastCard.render(userlist,helplist,sentlist,listkazu));
+    	int listkazu=idlist.size();
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu));
+    }
+
+//ソート古い順のページ
+    public Result sortOldCard() {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> idlist = new ArrayList<>();
+    	ArrayList<String> helplist = new ArrayList<>();
+    	ArrayList<String> sentlist = new ArrayList<>();
+
+    	 try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_card_table order by card_id");
+    		ResultSet rs = Ssql.executeQuery();
+    		while (rs.next()) {
+    			idlist.add(rs.getString("card_id"));
+    			helplist.add(rs.getString("help_content"));
+    			sentlist.add(rs.getString("sent_content"));
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	int listkazu=idlist.size();
+    	return ok(sortOldCard.render(idlist,helplist,sentlist,listkazu));
+    }
+
+  //絞込みA*****************************************************
+    public Result PastCard_A() {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> idlist = new ArrayList<>();
+    	ArrayList<String> helplist = new ArrayList<>();
+    	ArrayList<String> sentlist = new ArrayList<>();
+
+    	 try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_card_table where rank ='a' ");
+    		ResultSet rs = Ssql.executeQuery();
+    		while (rs.next()) {
+    			idlist.add(rs.getString("card_id"));
+    			helplist.add(rs.getString("help_content"));
+    			sentlist.add(rs.getString("sent_content"));
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	int listkazu=idlist.size();
+    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    }
+
+  //絞込みB*****************************************************
+    public Result PastCard_B() {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> idlist = new ArrayList<>();
+    	ArrayList<String> helplist = new ArrayList<>();
+    	ArrayList<String> sentlist = new ArrayList<>();
+
+    	 try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_card_table where rank ='b' ");
+    		ResultSet rs = Ssql.executeQuery();
+    		while (rs.next()) {
+    			idlist.add(rs.getString("card_id"));
+    			helplist.add(rs.getString("help_content"));
+    			sentlist.add(rs.getString("sent_content"));
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	int listkazu=idlist.size();
+    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    }
+
+  //絞込みC*****************************************************
+    public Result PastCard_C() {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> idlist = new ArrayList<>();
+    	ArrayList<String> helplist = new ArrayList<>();
+    	ArrayList<String> sentlist = new ArrayList<>();
+
+    	 try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_card_table where rank ='c' ");
+    		ResultSet rs = Ssql.executeQuery();
+    		while (rs.next()) {
+    			idlist.add(rs.getString("card_id"));
+    			helplist.add(rs.getString("help_content"));
+    			sentlist.add(rs.getString("sent_content"));
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	int listkazu=idlist.size();
+    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
     }
 
 
-    public Result PastCord_resultTop() {
-
-    	return ok(views.html.PastCord_resultTop.render());
+ //*********************************************************************************************
+    public Result PastCard_resultTop() {
+    	return ok(views.html.PastCard_resultTop.render());
     }
 
-    public Result PastCord_result_1() {
-    	return ok(views.html.PastCord_result_1.render());
+    public Result PastCard_result_1() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_2() {
-    	return ok(views.html.PastCord_result_2.render());
+    public Result PastCard_result_2() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_3() {
-    	return ok(views.html.PastCord_result_3.render());
+    public Result PastCard_result_3() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_4() {
-    	return ok(views.html.PastCord_result_4.render());
+    public Result PastCard_result_4() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_5() {
-    	return ok(views.html.PastCord_result_5.render());
+    public Result PastCard_result_5() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_6() {
-    	return ok(views.html.PastCord_result_6.render());
+    public Result PastCard_result_6() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_7() {
-    	return ok(views.html.PastCord_result_7.render());
+    public Result PastCard_result_7() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_8() {
-    	return ok(views.html.PastCord_result_8.render());
+    public Result PastCard_result_8() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_9() {
-    	return ok(views.html.PastCord_result_9.render());
+    public Result PastCard_result_9() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_10() {
-    	return ok(views.html.PastCord_result_10.render());
+    public Result PastCard_result_10() {
+    	return ok(views.html.PastCard_result.render());
     }
-    public Result PastCord_result_11() {
-    	return ok(views.html.PastCord_result_11.render());
+    public Result PastCard_result_11() {
+    	return ok(views.html.PastCard_result.render());
     }
 
 
