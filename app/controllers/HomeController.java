@@ -148,6 +148,28 @@ public class HomeController extends Controller {
     	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
     }
 
+  //絞込み未評価*****************************************************
+    public Result PastCard_D() {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> idlist = new ArrayList<>();
+    	ArrayList<String> helplist = new ArrayList<>();
+    	ArrayList<String> sentlist = new ArrayList<>();
+
+    	 try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_card_table where rank IS NULL ");
+    		ResultSet rs = Ssql.executeQuery();
+    		while (rs.next()) {
+    			idlist.add(rs.getString("card_id"));
+    			helplist.add(rs.getString("help_content"));
+    			sentlist.add(rs.getString("sent_content"));
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	int listkazu=idlist.size();
+    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    }
+
 
  //*********************************************************************************************
     public Result PastCard_resultTop() {
