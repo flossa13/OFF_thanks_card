@@ -12,7 +12,29 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /login1       controllers.HomeController.login1
-GET     /login2       controllers.HomeController.login2
-POST    /login1      controllers.AuthController.authenticate
-POST    /login2       controllers.AuthController.authenticate
+
+
+#GET     /tasks                      controllers.HomeController.tasks
+GET     /help                      controllers.HomeController.help
+
+
+GET     /PastCard                      controllers.HomeController.PastCard
+GET     /sortOldCard                      controllers.HomeController.sortOldCard
+
+GET     /PastCard_A                     controllers.HomeController.PastCard_A
+GET     /PastCard_B                     controllers.HomeController.PastCard_B
+GET     /PastCard_C                     controllers.HomeController.PastCard_C
+
+GET     /PastCard_resultTop                      controllers.HomeController.PastCard_resultTop
+
+GET     /PastCard_result_1                      controllers.HomeController.PastCard_result_1
+GET     /PastCard_result_2                      controllers.HomeController.PastCard_result_2
+GET     /PastCard_result_3                      controllers.HomeController.PastCard_result_3
+GET     /PastCard_result_4                      controllers.HomeController.PastCard_result_4
+GET     /PastCard_result_5                      controllers.HomeController.PastCard_result_5
+GET     /PastCard_result_6                      controllers.HomeController.PastCard_result_6
+GET     /PastCard_result_7                      controllers.HomeController.PastCard_result_7
+GET     /PastCard_result_8                      controllers.HomeController.PastCard_result_8
+GET     /PastCard_result_9                      controllers.HomeController.PastCard_result_9
+GET     /PastCard_result_10                     controllers.HomeController.PastCard_result_10
+GET     /PastCard_result_11                     controllers.HomeController.PastCard_result_11
