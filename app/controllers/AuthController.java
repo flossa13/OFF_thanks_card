@@ -10,24 +10,28 @@ import views.html.*;
 
 public class AuthController extends Controller {
 	
+
+		@Inject
+		private FormFactory formFactory;
+		
+	    public Result index() {
+	        return ok(index.render("Your new application is ready."));
+	    }
+
 		public Result login1() {
-			return ok(login1.render());
+			return ok(login1.render(formFactory.form(Login.class)));
 	    }
 		public Result login2() {
-			return ok(login2.render());
+			return ok(login2.render(formFactory.form(Login.class)));
 	    }
-		public static Result authenticate() {
-	        Form<LoginForm> loginForm = form(LoginForm.class).bindFromRequest();
-	        if (loginForm.hasErrors()) {
-	            return badRequest(login.render(loginForm));
-	        } else {
-	        	session().clear();
-	            session("username", loginForm.get().getUsername());
-	            String returnUrl = ctx().session().get("returnUrl");
-	            if(returnUrl == null || returnUrl.equals("") || returnUrl.equals(routes.AuthController.login1().absoluteURL(request()))) {
-	                returnUrl = "/inputchat";
-	            }
-	            return redirect(returnUrl);
-	        }
-	    }
+		public Result authenticate() {
+		        Form<Login> form = formFactory.form(Login.class).bindFromRequest();
+
+		        if (form.hasErrors()) {
+		            return badRequest(login1.render(form),login2.render(form));
+		        } else {
+		            Login login = form.get();
+		            return ok("ようこそ " + login.username + " さん!!");
+		        }
 	    }	
+		}

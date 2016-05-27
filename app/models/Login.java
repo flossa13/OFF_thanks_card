@@ -1,29 +1,18 @@
 package models;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+public class Login {
+    public String username;
+    public String password;
+    
 
-import play.db.*;
+    public String validate() {
+        if (authenticate(username, password)) {
+            return null;
+        }
+        return "Invalid username and password";
+    }
 
-	public class Login {
-
-		Connection connection = DB.getConnection();
-		ArrayList<String> namelist = new ArrayList<String>();{
-
-			try {
-				PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table");
-				ResultSet rs = Ssql.executeQuery();
-				while (rs.next()) {
-					namelist.add(rs.getString("employee_namen"));
-				}
-	} 			
-			catch (SQLException e) {
-				e.printStackTrace();
-	}
-			String id = request.getParameter("id");
-			String pas= request.getParameter("user_id");
-			
-			
-	}
+    private Boolean authenticate(String username, String password) {
+        return (username.equals("koko") && password.equals("pizza"));
+    }
 	}
