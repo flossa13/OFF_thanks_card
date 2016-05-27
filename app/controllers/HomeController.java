@@ -62,6 +62,7 @@ public class HomeController extends Controller {
     //受信履歴を表示
 	public Result receive() {
 		Connection connection = DB.getConnection();
+		Connection connection_2 = DB.getConnection();
 		ArrayList<String> cardlist = new ArrayList<String>();
 		ArrayList<String> userlist = new ArrayList<String>();
 		ArrayList<String> helplist = new ArrayList<String>();
@@ -77,7 +78,7 @@ public class HomeController extends Controller {
 				sentlist.add(rs.getString("sent_content"));
 				readlist.add(rs.getString("read_card"));
 			}
-	 	}
+		}
 	 	catch (Exception e) {
 			e.printStackTrace();
 	 	}
@@ -90,7 +91,10 @@ public class HomeController extends Controller {
     public Result top() {
     	return ok(top.render());
     }
-
-
-
 }
+
+
+
+
+
+
