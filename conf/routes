@@ -24,6 +24,7 @@ GET     /sortOldCard                      controllers.HomeController.sortOldCard
 GET     /PastCard_A                     controllers.HomeController.PastCard_A
 GET     /PastCard_B                     controllers.HomeController.PastCard_B
 GET     /PastCard_C                     controllers.HomeController.PastCard_C
+GET     /PastCard_D                     controllers.HomeController.PastCard_D
 
 GET     /PastCard_resultTop                      controllers.HomeController.PastCard_resultTop
 
