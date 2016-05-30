@@ -102,12 +102,12 @@ public class HomeController extends Controller {
 			 newTask.read_card = false;
 			 newTask.check_flg = true;
 
-			 newTask.save();
+			// newTask.save();
 
 		 } catch (Exception e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-         return ok(sendDB.render(str));
+         return ok(sendDB.render());
 	 }
 }
