@@ -4,32 +4,27 @@
 		<title>感謝カード作成</title>
 		<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/style.css")">
 	</head>
-	<body>
+	<body id="send_screen">
 		<h1>感謝カード作成</h1>
-<form action="@routes.HomeController.sendDB()" method="POST">
+		<form action="@routes.HomeController.sendDB()" method="POST">
 		<!-- <form action="@routes.HomeController.sendDB()" name="form" method="POST"> -->
 			<p>
-				<select name="division">
-					@for((name,i) <- dnamelist.zipWithIndex){
-						<option value=@i>@name</option>
-					}
-				</select>
-				<select name="receive_user_id">
+
+				<select id="receive_user" name="receive_user_id">
 				@for((id, i) <- idlist.zipWithIndex){
-					<option value=@id>@namelist.get(i)</option>
+					<option value=@id>@dnamelist.get(didlist.get(i)-1) @namelist.get(i)</option>
 				}
 				</select>
+				さんへ
 			</p>
-			<p>
-				ヘルプ内容：<input type="text" name="help_content" size="40" maxlength="30"/>
+			<p id="help">
+				ヘルプ内容：<input id="help_content" type="text" name="help_content" size="40" maxlength="30"/>
 			</p>
-			<p>
+			<p id="sent">
 				感謝内容<br>
-				<textarea name="sent_content" rows="7" cols="40" maxlength="255"></textarea>
+				<textarea id="sent_content" name="sent_content" rows="7" cols="40" maxlength="255"></textarea>
 			</p>
-			<p>
-				<input type="submit" name="send" value="送信"/>
-			</p>
+			<input id="send" type="submit" name="send" value="送信"/>
 		</form>
 	</body>
 </html>

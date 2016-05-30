@@ -1,10 +1,13 @@
-@(str: String)
 
 <html>
+	<head>
+		<title>送信完了</title>
+		<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/style.css")">
+	</head>
     <body>
-        	<h1>@str</h1>
-        <a href="/create" target="_top">
-        	感謝カード作成
-        </a>
+    	<p id="send_after">
+    		送信しました。<br>
+    		タブを閉じてください。
+    	</p>
     </body>
 </html>
