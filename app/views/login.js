@@ -1,13 +1,13 @@
 function filedChanged(){
-	var username = getField("username");
-	var password =getField("password");
+	var enployee_id = getField("enployee_id");
+	var divasion_id =getField("pass");
 	var disabled =true;
 	
 	if (userId.value.length > 0 && password.value.length > 0)
 		disabled = true;
 	}
 	
-	var login =get Field("login");
+	var login =get Field("login1");
 	if (disabled) {
 		login.setAttribute("disabled" , "disabled");
 	}

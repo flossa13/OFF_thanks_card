@@ -1,20 +1,30 @@
 package models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import play.db.*;
 
-public class Login {
-    public String enployee_id;
-    public String divasion_id;
-    
+	public class Login {
 
-    public String validate() {
-        if (authenticate(enployee_id, divasion_id)) {
-            return null;
-    }
-        return "社員IDとPASSが一致しません";
-    }
+		Connection connection = DB.getConnection();
+		ArrayList<String> namelist = new ArrayList<String>();{
 
-    private Boolean authenticate(String enployee_id, String divasion_id) {
-        return (enployee_id.equals("koko") && divasion_id.equals("popo"));
-    }
+			try {
+				PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table");
+				ResultSet rs = Ssql.executeQuery();
+				while (rs.next()) {
+					namelist.add(rs.getString("employee_namen"));
+				}
+	} 			
+			catch (Exception e) {
+				e.printStackTrace();
+	}
+			String id = request.getParameter("id");
+			String pas= request.getParameter("user_id");
+			
+			
+	}
 	}
