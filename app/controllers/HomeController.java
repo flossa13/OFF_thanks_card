@@ -34,20 +34,24 @@ public class HomeController extends Controller {
     	return ok(home.render());
     }
 
-	 //送信履歴を表示
+	//送信履歴を表示
 	public Result send() {
 		Connection connection = DB.getConnection();
 		ArrayList<String> cardlist = new ArrayList<String>();
 		ArrayList<String> userlist = new ArrayList<String>();
 		ArrayList<String> helplist = new ArrayList<String>();
 		ArrayList<String> sentlist = new ArrayList<String>();
+		ArrayList<String> namelist = new ArrayList<String>();
 
 	 	try {
-			PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_Card_table");
+			PreparedStatement Ssql = connection.prepareStatement("SELECT *  FROM thanks_Card_table "
+					+ "INNER JOIN employee_table ON thanks_card_table.receive_user_id"
+					+ " = employee_table.employee_id ORDER BY card_id DESC");
 			ResultSet rs = Ssql.executeQuery();
 			while (rs.next()) {
 				cardlist.add(rs.getString("today"));
 				userlist.add(rs.getString("receive_user_id"));
+				namelist.add(rs.getString("employee_namen"));
 				helplist.add(rs.getString("help_content"));
 				sentlist.add(rs.getString("sent_content"));
 			}
@@ -56,24 +60,27 @@ public class HomeController extends Controller {
 			e.printStackTrace();
 	 	}
 	 	int count = cardlist.size();
-	 	return ok(send.render(cardlist,userlist,helplist,sentlist,count));
+	 	return ok(send.render(cardlist,userlist,helplist,sentlist,count,namelist));
 	}
 
     //受信履歴を表示
 	public Result receive() {
 		Connection connection = DB.getConnection();
-		Connection connection_2 = DB.getConnection();
 		ArrayList<String> cardlist = new ArrayList<String>();
 		ArrayList<String> userlist = new ArrayList<String>();
 		ArrayList<String> helplist = new ArrayList<String>();
 		ArrayList<String> sentlist = new ArrayList<String>();
 		ArrayList<String> readlist = new ArrayList<String>();
+		ArrayList<String> namelist = new ArrayList<String>();
 	 	try {
-			PreparedStatement Ssql = connection.prepareStatement("select *  from thanks_Card_table");
+			PreparedStatement Ssql = connection.prepareStatement("SELECT *  FROM thanks_Card_table "
+					+ "INNER JOIN employee_table ON thanks_card_table.send_user_id"
+					+ " = employee_table.employee_id ORDER BY card_id DESC");
 			ResultSet rs = Ssql.executeQuery();
 			while (rs.next()) {
 				cardlist.add(rs.getString("today"));
 				userlist.add(rs.getString("send_user_id"));
+				namelist.add(rs.getString("employee_namen"));
 				helplist.add(rs.getString("help_content"));
 				sentlist.add(rs.getString("sent_content"));
 				readlist.add(rs.getString("read_card"));
@@ -83,7 +90,7 @@ public class HomeController extends Controller {
 			e.printStackTrace();
 	 	}
 	 	int count = cardlist.size();
-	 	return ok(receive.render(cardlist,userlist,helplist,sentlist,readlist,count));
+	 	return ok(receive.render(cardlist,userlist,helplist,sentlist,readlist,count,namelist));
 	}
 
 
@@ -92,9 +99,3 @@ public class HomeController extends Controller {
     	return ok(top.render());
     }
 }
-
-
-
-
-
-
