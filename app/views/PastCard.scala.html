@@ -1,52 +1,56 @@
-@(idlist:List[String],helplist:List[String],sentlist:List[String],listkazu:Integer)
+@(idlist:List[String],helplist:List[String],sentlist:List[String],listkazu:Integer,pageName:String)
 
 @PastCard_common("新しい順") {
 <div id="form">
 <p class="submit"><input type="button" value="ログアウト"></p>
 
-        <h1>過去カード一覧</h1>
+        <h1>@pageName</h1>
 
         <br><br>
 
 
 <nav>
-	<p><a href="@routes.HomeController.PastCard_resultTop()">部署別集計ページ</a></p>
+	<p><a href="@routes.SakihamaController.PastCard_resultTop()">部署別集計ページ</a></p>
 	<br>
 	<p>ソート</p>
-	<p><a href="@routes.HomeController.PastCard()">新しい順</a></p>
-	<p><a href="@routes.HomeController.sortOldCard()">古い順</a></p>
+	<p><a href="@routes.SakihamaController.PastCard()">新しい順</a></p>
+	<p><a href="@routes.SakihamaController.sortOldCard()">古い順</a></p>
 	<br>
 	<p>絞込み</p>
-	<p><a href="@routes.HomeController.PastCard_A()">A評価一覧</a></p>
-	<p><a href="@routes.HomeController.PastCard_B()">B評価一覧</a></p>
-	<p><a href="@routes.HomeController.PastCard_C()">C評価一覧</a></p>
-	<p><a href="@routes.HomeController.PastCard_D()">未評価一覧</a></p>
+	<p><a href="@routes.SakihamaController.PastCard_A()">A評価一覧</a></p>
+	<p><a href="@routes.SakihamaController.PastCard_B()">B評価一覧</a></p>
+	<p><a href="@routes.SakihamaController.PastCard_C()">C評価一覧</a></p>
+	<p><a href="@routes.SakihamaController.PastCard_D()">未評価一覧</a></p>
 </nav>
 
 		<table>
-		@for(i <- 1 to listkazu){
-			<tr>
-				<td>
-					@idlist.get(i-1)
-				</td>
-				<td>
-					件名：@helplist.get(i-1)
-				</td>
-				<td>
-					@sentlist.get(i-1)
-				</td>
-				<td>
-					評価
-					<form action="" method="post">
-					<input type="radio" name="hyouka" value="1" checked="checked">A
-					<input type="radio" name="hyouka" value="2">B
-					<input type="radio" name="hyouka" value="3">C
-					<input type="submit" value="送信">
-					</form>
-				</td>
-			</tr>
-			}
 
+		@if(listkazu==0){
+			<p align="center">評価はありません</p>
+		}else{
+			@for(i <- 1 to listkazu){
+				<tr>
+					<td>
+						@idlist.get(i-1)
+					</td>
+					<td>
+						件名：@helplist.get(i-1)
+					</td>
+					<td>
+						@sentlist.get(i-1)
+					</td>
+					<td>
+						評価
+						<form action="" method="post">
+						<input type="radio" name="hyouka" value="1" checked="checked">A
+						<input type="radio" name="hyouka" value="2">B
+						<input type="radio" name="hyouka" value="3">C
+						<input type="submit" value="送信">
+						</form>
+					</td>
+				</tr>
+				}
+			}
 		</table>
 
 <footer>OFF</footer>
