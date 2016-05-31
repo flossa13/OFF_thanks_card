@@ -2,7 +2,7 @@
 
 @PastCard_common("新しい順") {
 <div id="form">
-<p class="submit"><input type="button" value="ログアウト"></p>
+<p ><input type="submit" value="ログアウト"></p>
 
         <h1>@pageName</h1>
 
@@ -10,17 +10,17 @@
 
 
 <nav>
-	<p><a href="@routes.SakihamaController.PastCard_resultTop()">部署別集計ページ</a></p>
+	<p><a href="@routes.SHomeController.PastCard_resultTop()">部署別集計ページ</a></p>
 	<br>
 	<p>ソート</p>
-	<p><a href="@routes.SakihamaController.PastCard()">新しい順</a></p>
-	<p><a href="@routes.SakihamaController.sortOldCard()">古い順</a></p>
+	<p><a href="@routes.SHomeController.PastCard()">新しい順</a></p>
+	<p><a href="@routes.SHomeController.sortOldCard()">古い順</a></p>
 	<br>
 	<p>絞込み</p>
-	<p><a href="@routes.SakihamaController.PastCard_A()">A評価一覧</a></p>
-	<p><a href="@routes.SakihamaController.PastCard_B()">B評価一覧</a></p>
-	<p><a href="@routes.SakihamaController.PastCard_C()">C評価一覧</a></p>
-	<p><a href="@routes.SakihamaController.PastCard_D()">未評価一覧</a></p>
+	<p><a href="@routes.SHomeController.PastCard_A()">A評価一覧</a></p>
+	<p><a href="@routes.SHomeController.PastCard_B()">B評価一覧</a></p>
+	<p><a href="@routes.SHomeController.PastCard_C()">C評価一覧</a></p>
+	<p><a href="@routes.SHomeController.PastCard_D()">未評価一覧</a></p>
 </nav>
 
 		<table>
@@ -30,6 +30,7 @@
 		}else{
 			@for(i <- 1 to listkazu){
 				<tr>
+
 					<td>
 						@idlist.get(i-1)
 					</td>
@@ -40,14 +41,16 @@
 						@sentlist.get(i-1)
 					</td>
 					<td>
-						評価
-						<form action="" method="post">
-						<input type="radio" name="hyouka" value="1" checked="checked">A
-						<input type="radio" name="hyouka" value="2">B
-						<input type="radio" name="hyouka" value="3">C
-						<input type="submit" value="送信">
+						<p>評価</p>
+						<form action="@routes.SHomeController.updateRank" method="post">
+						<input type="hidden" name="card_id" value=@idlist.get(i-1)></input>
+						<input type="radio" name="rank" value="a" checked>A
+						<input type="radio" name="rank" value="b">B
+						<input type="radio" name="rank" value="c">C
+						<input type="submit" value="更新">
 						</form>
 					</td>
+
 				</tr>
 				}
 			}
