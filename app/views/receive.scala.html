@@ -10,14 +10,24 @@
   <title>受信画面</title>
 
     <script language="javascript" type="text/javascript">
-       function OnButtonClick() {
-		  ret = window.confirm("返信フォームへ飛びます。宜しいですか？");
+
+    //返信フォーム
+       function checkClick() {
+		  ret = window.confirm("返信フォームを開きます。宜しいですか？");
 		  if (ret == true){
-			thanks_card_table.check_flg = "f";
-			thanks_card_table.save();
-			location.href ="routes.HomeController.home()";
+			//location.href ="top";
+			window.open("top",'返信フォーム')
 		  }
        }
+
+    //カード詳細表示
+       function readClick() {
+ 		  ret = window.confirm("カードの詳細を開きます。宜しいですか？");
+ 		  if (ret == true){
+ 			//location.href ="top";
+ 			window.open("top",'返信フォーム')
+ 		  }
+        }
     </script>
 
  </head>
@@ -25,13 +35,14 @@
 
 
 
- 	<table rules="rows" >
+ 	<table border="5" rules="rows" >
 
  	<tr bgcolor="#66FFFF">
 		<td style="font-size:200%">受信日</td>
 		<td style="font-size:200%">差出人</td>
 		<td style="font-size:200%">件名</td>
-		<td style="font-size:200%">内容</td>
+		<!-- <td style="font-size:200%">内容</td>-->
+		<td style="font-size:200%">詳細</td>
 		<td style="font-size:200%">返信</td>
 	</tr>
 
@@ -46,10 +57,10 @@
 			<td style="font-size:200%" width="200">@cardlist(num -1)</td>
 			<td style="font-size:200%" width="100">@namelist(num -1)</td>
 			<td style="font-size:200%" width="200">@helplist(num -1)</td>
-			<td style="font-size:200%" width="500">@sentlist(num -1)</td>
+			<td><input type="button" value="詳細" onclick="readClick()"></td>
+		<!-- 	<td style="font-size:200%" width="500">@sentlist(num -1)</td> -->
 			@if(checklist(num-1)=="t"){
- 			 <td border="5">
- 			 <input type="button" value="返信" onclick="OnButtonClick()"></td>
+ 			 <td><input type="button" value="返信" onclick="checkClick()"></td>
 			}else{
 			<td>&nbsp;</td>
 			}
