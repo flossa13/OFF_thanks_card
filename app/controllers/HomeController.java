@@ -72,6 +72,7 @@ public class HomeController extends Controller {
 		ArrayList<String> sentlist = new ArrayList<String>();
 		ArrayList<String> readlist = new ArrayList<String>();
 		ArrayList<String> namelist = new ArrayList<String>();
+		ArrayList<String> checklist = new ArrayList<String>();
 	 	try {
 			PreparedStatement Ssql = connection.prepareStatement("SELECT *  FROM thanks_Card_table "
 					+ "INNER JOIN employee_table ON thanks_card_table.send_user_id"
@@ -84,13 +85,15 @@ public class HomeController extends Controller {
 				helplist.add(rs.getString("help_content"));
 				sentlist.add(rs.getString("sent_content"));
 				readlist.add(rs.getString("read_card"));
+				readlist.add(rs.getString("read_card"));
+				checklist.add(rs.getString("check_flg"));
 			}
 		}
 	 	catch (Exception e) {
 			e.printStackTrace();
 	 	}
 	 	int count = cardlist.size();
-	 	return ok(receive.render(cardlist,userlist,helplist,sentlist,readlist,count,namelist));
+	 	return ok(receive.render(cardlist,userlist,helplist,sentlist,readlist,count,namelist,checklist));
 	}
 
 
