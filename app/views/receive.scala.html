@@ -1,29 +1,41 @@
 @(cardlist:List[String],userlist:List[String]
 ,helplist:List[String],sentlist:List[String]
-,readlist:List[String],count:Integer,namelist:List[String])
+,readlist:List[String],count:Integer
+,namelist:List[String],checklist:List[String])
 
 
 <html>
  <head>
   <meta charset="UTF-8">
   <title>受信画面</title>
+
+    <script language="javascript" type="text/javascript">
+       function OnButtonClick() {
+		  ret = window.confirm("返信フォームへ飛びます。宜しいですか？");
+		  if (ret == true){
+			thanks_card_table.check_flg = "f";
+			thanks_card_table.save();
+			location.href ="routes.HomeController.home()";
+		  }
+       }
+    </script>
+
  </head>
  <body bgcolor="#bbbbbb">
 
 
 
- 	<table border="5" rules="rows">
+ 	<table rules="rows" >
 
  	<tr bgcolor="#66FFFF">
 		<td style="font-size:200%">受信日</td>
 		<td style="font-size:200%">差出人</td>
 		<td style="font-size:200%">件名</td>
 		<td style="font-size:200%">内容</td>
-		<td style="font-size:200%">チェック</td>
+		<td style="font-size:200%">返信</td>
 	</tr>
 
  		@for(num <- 1 to count){
-
 
  			@if(readlist(num-1)=="t"){
  			<tr bgcolor="#00FFFF" >
@@ -35,9 +47,12 @@
 			<td style="font-size:200%" width="100">@namelist(num -1)</td>
 			<td style="font-size:200%" width="200">@helplist(num -1)</td>
 			<td style="font-size:200%" width="500">@sentlist(num -1)</td>
-			<td style="font-size:200%" width="500">@readlist(num -1)</td>
-
-
+			@if(checklist(num-1)=="t"){
+ 			 <td border="5">
+ 			 <input type="button" value="返信" onclick="OnButtonClick()"></td>
+			}else{
+			<td>&nbsp;</td>
+			}
 			</tr>
 		}
 
