@@ -1,0 +1,54 @@
+@(daylist:List[String], userlist:List[String],
+helplist:List[String], sentlist:List[String],
+read: List[String], count:Integer,cardid: List[String],
+receivelist: List[String])
+
+
+<html>
+	 <head>
+	  <meta charset="UTF-8">
+	  <title>着信一覧</title>
+	 </head>
+ <body bgcolor="#bbbbbb">
+ 	<table  border="1">
+		<tr bgcolor="#FFBBFF">
+			<td style="font-size:200%" width="150">感謝した人</td>
+			<td style="font-size:200%" width="150">件名</td>
+			<td style="font-size:200%" width="150">作成日</td>
+			<td style="font-size:200%" width="150">詳細</td>
+			<td style="font-size:200%" width="150">感謝された人</td>
+		</tr>
+
+		@for(num <- 1 to count){
+
+
+ 			@if(read(num-1)== "t"){
+				<tr bgcolor="#FFCCFF">
+			}else{
+				<tr bgcolor="#99FFFF">
+			}
+
+				<td style="font-size:200%">@userlist(num -1)</td>
+				<td style="font-size:200%">@helplist(num -1)</td>
+				<td style="font-size:200%">@daylist(num -1)</td>
+				<td style="font-size:200%">@sentlist(num -1)</td>
+				<form action="@routes.HomeController.tamesi()" method="post">
+				<td>
+					<input type="hidden" name="card_id" value="@cardid.get(num -1)"></input>
+					<input type="hidden" name="employee_namen" value="@userlist.get(num -1)"></input>
+
+					<input type="submit" value="詳細">
+
+					@*<a href="@routes.HomeController.thankscard()">
+					*	<button class="button1" type="submit" >詳細</button>
+					*</a>
+					*@
+			   </td>
+			   </form>
+
+			</tr>
+
+		}
+	</table>
+	 </body>
+</html>

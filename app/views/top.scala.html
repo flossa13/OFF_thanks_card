@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>マイページ</title>
-</head>
-<body>
-<p>掲示板></p>
-</body>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>top</title>
+		<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<a href="@routes.HomeController.top()">
+					<img src="@routes.Assets.versioned("images/icon.png")">
+				</a>
+			</div>
+			<div class="logout">
+				<a href="@routes.HomeController.thankscard()">
+					<button class="button2" type="submit">ログアウト</button>
+				</a>
+			</div>
+			<p>
+				<h1 align="center">
+					トップ画面
+				</h1>
+			</p>
+		</header>
+		<div class="clearfix">
+			<nav>
+				<table class="table1" border="1" >
+					<tr>
+						<th>
+							メニューバー<br><br>
+							<a href="@routes.HomeController.link1()">
+								送受信履歴<br>
+								</a>
+							<a href="@routes.HomeController.link2()">
+								カード作成<br>
+								</a>
+						</th>
+					</tr>
+				</table>
+			</nav>
+			<section>
+				<article>
+					<table>
+						<tr>
+							<th>
+								<h2>
+									新着カード一覧
+								</h2>
+							</th>
+						<tr>
+							<th>
+								<iframe src="@routes.HomeController.cards()" name="sample" width="100%">
+									この部分は新着カード一覧を表示しています。
+								</iframe>
+							</th>
+						</tr>
+					</table>
+				</article>
+			</section>
+		</div>
+	</body>
 </html>
+
+

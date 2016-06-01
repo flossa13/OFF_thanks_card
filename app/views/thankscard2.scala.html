@@ -1,0 +1,15 @@
+@(id: Integer,send:String)
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+	</head>
+		<body>
+			@common(""){
+			<h1>******** | id | ***********</h1>
+
+			@id @send
+			}
+	</body>
+</html>
