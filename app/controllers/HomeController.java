@@ -19,11 +19,4 @@ public class HomeController extends Controller {
     public Result index() {
         return ok(index.render("Your new application is ready."));
     }
-    public Result login1() {
-    	return ok(login1.render());
-    }
-    public Result login2() {
-    	return ok(login2.render());
-    }
-
 }

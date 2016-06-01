@@ -1,24 +1,35 @@
-@import helper._
+@(loginForm: Form[Login])
 
+@import helper._
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <title>管理者ログイン</title>
 	<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/login.css")">
+	<script type="text/javascript" src="login.js">
+	</script>
 </head>
 <body>
 <div id="form">
-	<a href="@routes.HomeController.login1()">
-	<img src="@routes.Assets.versioned("images/login.jpg")"width="80" height="80" alt="ロゴ"></a>
+	 @form(routes.AuthController.authenticate()) {
+	<a href="@routes.AuthController.login1()">
+	<img src="@routes.Assets.versioned("images/images.jpg")"width="80" height="80" alt="ロゴ"></a>
     <p class="form-title">管理者ログイン</p>
-    <form action="post">
-        <h3><p>社員ID</p></h3>
-        <p class="username"><input type="text" name="username" maxlength="8" autocomplete="OFF" /></p>
-        <h3><p>社員PASS</p></h3>
-        <p class="password"><input type="password" name="password" maxlength="8" autocomplete="OFF" /></p>
-        <p class="submit"><input type="submit" value="ログイン" /></p>
-    </form>
+		<form action="login2">
+			
+			@if(form.hasGlobalErrors) {
+    		<p class="error">@form.globalError.message</p>
+			}
+			
+        	<h3><p>社員ID</p></h3>
+        	<p class="username"><input type="text" name="id" maxlength="8" placeholder="管理者IDを入力して下さい(半角数字)" autocomplete="OFF" /></p>
+        	<h3><p>社員PASS</p></h3>
+        	<p class="password"><input type="password" name="user_id" maxlength="8" placeholder="管理者PASSを入力して下さい(半角英数)" autocomplete="OFF" /></p>
+        	<p class="submit"><input type="submit" value="ログイン" /></p>
+        	<p class="submit"><input type="reset" value="リセット" /></p>
+    	</form>
 </div>
+			}
 </body>
 </html>
