@@ -24,12 +24,16 @@
 	</tr>
 	</table>
 
-  <h1 style= "margin-left:300px"><a href="@routes.HomeController.send()"><font color="#000000">送信履歴</font-color></a></h1>
-  <iframe src="@routes.HomeController.send()" width="1000" height="250" border="10"
+  <h1 style= "margin-left:300px"><font color="#000000">送信履歴</font-color></h1>
+  <iframe src="@routes.HomeController.send()" width="1500" height="500" border="10"
   style="position:relative; left:113px; border:3px; border-style:solid; border-color:black;"></iframe>
 
-  <h1 style= "margin-left:300px"><a href="@routes.HomeController.receive()"><font color="#000000">受信履歴</font></a></h1>
-  <iframe src="@routes.HomeController.receive()" width="1000" height="250"
-  style="position:relative; left:300px; margin-bottom:30px; border:3px; border-style:solid; border-color:black;"></iframe>
+  <h1 style= "margin-left:300px"><font color="#000000">受信履歴</font></h1>
+  <iframe src="@routes.HomeController.receive()" width="1500" height="500"
+  style="position:relative; left:300px; margin-bottom:80px; border:3px; border-style:solid; border-color:black;"></iframe>
+
+  <FORM>
+	<INPUT TYPE=button value="リロード" onclick="JavaScript:location.reload()">
+	</FORM>
   </body>
 </html>

@@ -1,35 +1,12 @@
-@(cardlist:List[String],userlist:List[String]
-,helplist:List[String],sentlist:List[String]
-,readlist:List[String],count:Integer
-,namelist:List[String],checklist:List[String])
+@(cardlist:List[String],datelist:List[String],userlist:List[String]
+,helplist:List[String],sentlist:List[String],readlist:List[String]
+,count:Integer,namelist:List[String],checklist:List[String])
 
 
 <html>
  <head>
   <meta charset="UTF-8">
   <title>受信画面</title>
-
-    <script language="javascript" type="text/javascript">
-
-    //返信フォーム
-       function checkClick() {
-		  ret = window.confirm("返信フォームを開きます。宜しいですか？");
-		  if (ret == true){
-			//location.href ="top";
-			window.open("top",'返信フォーム')
-		  }
-       }
-
-    //カード詳細表示
-       function readClick() {
- 		  ret = window.confirm("カードの詳細を開きます。宜しいですか？");
- 		  if (ret == true){
- 			//location.href ="top";
- 			window.open("top",'返信フォーム')
- 		  }
-        }
-    </script>
-
  </head>
  <body bgcolor="#bbbbbb">
 
@@ -38,36 +15,39 @@
  	<table border="5" rules="rows" >
 
  	<tr bgcolor="#66FFFF">
-		<td style="font-size:200%">受信日</td>
-		<td style="font-size:200%">差出人</td>
+		<td style="font-size:200%">助けた人</td>
 		<td style="font-size:200%">件名</td>
-		<!-- <td style="font-size:200%">内容</td>-->
+		<td style="font-size:200%">内容</td>
+		<td style="font-size:200%">助けた日</td>
 		<td style="font-size:200%">詳細</td>
-		<td style="font-size:200%">返信</td>
+		<!-- <td style="font-size:200%">返信</td> -->
 	</tr>
 
  		@for(num <- 1 to count){
 
- 			@if(readlist(num-1)=="t"){
- 			<tr bgcolor="#00FFFF" >
+ 			@if(readlist(num-1)=="f"){
+ 			<tr bgcolor="#99FFFF" >
 			}else{
-			<tr bgcolor="#99FFFF" >
+			<tr bgcolor="#00FFFF" >
 			}
 
-			<td style="font-size:200%" width="200">@cardlist(num -1)</td>
-			<td style="font-size:200%" width="100">@namelist(num -1)</td>
-			<td style="font-size:200%" width="200">@helplist(num -1)</td>
-			<td><input type="button" value="詳細" onclick="readClick()"></td>
-		<!-- 	<td style="font-size:200%" width="500">@sentlist(num -1)</td> -->
-			@if(checklist(num-1)=="t"){
- 			 <td><input type="button" value="返信" onclick="checkClick()"></td>
+			<td style="font-size:200%" >@namelist(num -1)</td>
+			<td style="font-size:200%" >@helplist(num -1)</td>
+			<td style="font-size:200%" >@sentlist(num -1)</td>
+			<td style="font-size:200%" >@datelist(num -1)</td>
+
+			<form action="" method="POST">
+			<td><input type="submit" value="詳細"></td>
+
+		<!-- 	@if(checklist(num-1)=="t"){
+ 			 <td><input type="button" value="返信" onclick="window.open('top')"></td>
 			}else{
 			<td>&nbsp;</td>
 			}
+			-->
 			</tr>
 		}
 
 	</table>
-
  </body>
 </html>
