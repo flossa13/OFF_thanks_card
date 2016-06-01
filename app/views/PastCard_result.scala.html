@@ -1,0 +1,44 @@
+@(divName:String,userlist:List[String],a:Integer,b:Integer,c:Integer)
+
+@PastCard_common("部署") {
+<div id="form">
+
+    	<p class="submit"><input type="button" value="ログアウト"></p>
+
+        <h1>感謝カード一覧</h1>
+        <h2>@divName 集計</h2>
+
+        <br><br>
+
+
+			<nav>
+				<p><a href="@routes.SHomeController.PastCard_result_1()">人事</a></p>
+
+			<p><a href="@routes.SHomeController.PastCard_result_2()">総務</a></p>
+			<p><a href="@routes.SHomeController.PastCard_result_3()">システム開発</a></p>
+			<p><a href="@routes.SHomeController.PastCard_result_4()">営業</a></p>
+
+
+			</nav>
+		<section>
+		<table>
+			<tr>
+				<th align="center" width="70%">名前</th>
+				<th align="center" width="10%">A</th>
+				<th align="center" width="10%">B</th>
+				<th align="center" width="10%">C</th>
+			</tr>
+			@for(user <- userlist){
+			<tr>
+				<td>@user</td>
+				<td>@a</td>
+				<td>@b</td>
+				<td>@c</td>
+			</tr>
+			}
+		</table>
+		</section>
+
+		<footer>OFF</footer>
+</div>
+}

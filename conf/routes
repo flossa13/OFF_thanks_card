@@ -12,7 +12,23 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /login1       controllers.HomeController.login1
-GET     /login2       controllers.HomeController.login2
-POST    /login1      controllers.AuthController.authenticate
-POST    /login2       controllers.AuthController.authenticate
+
+
+#GET     /tasks                      controllers.HomeController.tasks
+GET     /help                      controllers.HomeController.help
+
+
+GET     /PastCard                      controllers.SakihamaController.PastCard
+GET     /sortOldCard                      controllers.SakihamaController.sortOldCard
+
+GET     /PastCard_A                     controllers.SakihamaController.PastCard_A
+GET     /PastCard_B                     controllers.SakihamaController.PastCard_B
+GET     /PastCard_C                     controllers.SakihamaController.PastCard_C
+GET     /PastCard_D                     controllers.SakihamaController.PastCard_D
+
+GET     /PastCard_resultTop                      controllers.SakihamaController.PastCard_resultTop
+
+GET     /PastCard_result_1                      controllers.SakihamaController.PastCard_result_1
+GET     /PastCard_result_2                      controllers.SakihamaController.PastCard_result_2
+GET     /PastCard_result_3                      controllers.SakihamaController.PastCard_result_3
+GET     /PastCard_result_4                      controllers.SakihamaController.PastCard_result_4
