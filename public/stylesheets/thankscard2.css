@@ -1,0 +1,107 @@
+body,p,form,input{
+	margin: 0;
+}
+#send_screen{
+	background-color: #ffffff;
+	background-image: url("../images/green0030_enpitsu.png");
+}
+form{
+    width: 700px;
+    height: 400px;
+    margin: 20px auto;
+    padding: 30px;
+    font-weight: 900;
+}
+
+form p{
+    font-size: 20px;
+}
+
+h1{
+    font-size: 60px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#send{
+    margin: 10px 250px;
+    width: 200px;
+    height: 50px;
+    font-size: 40px;
+}
+#send_after{
+	background-color: #0000FF;
+	color: #FFFFFF;
+	font-size: 40px;
+	font-weight: 900;
+	border-radius: 20px;
+	width: 400px;
+	height: 150px;
+	font-family: Courier New;
+	padding: 50px 20px 20px 20px;
+	text-decoration: none;
+	margin-left: 450px;
+	margin-top: 200px;
+}
+select{
+	width: 350px;
+	height: 40px;
+	font-size: 30px;
+	margin: 10px 10px 20px 90px;
+
+}
+#help{
+	text-align: center;
+	font-size: 40px;
+}
+#help_content{
+	margin: 0 auto;
+	width: 600px;
+	height: 40px;
+	font-size: 30px
+}
+#sent{
+	text-align: center;
+	margin: 20px;
+	font-size: 40px;
+}
+textarea{
+	width: 600px;
+	height: 200px;
+	font-size: 30px;
+}
+
+#send input {
+  background: #00ff00;
+  border-radius: 20px;
+  font-family: Courier New;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 15px 5px 15px;
+  text-decoration: none;
+}
+
+#send input:hover {
+  background: #ffff11;
+  text-decoration: none;
+}
+#today{
+	width: 300px;
+	height: 40px;
+	font-size: 30px;
+	margin: 0px 0px 20px 50px
+}
+form{
+  border-radius: 20px;
+  font-family: Courier New;
+  font-size: 30px;
+  padding: 20px 20px 20px 20px;
+  text-decoration: none;
+}
+
+.table1{
+	style:table-layout: auto;
+	text-align:center;
+	font-size:200%;
+	width:400;
+}

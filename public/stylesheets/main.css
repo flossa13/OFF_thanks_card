@@ -18,9 +18,11 @@ body {
 }
 
 .table1{
+	padding:30ps;
+	table-layout: auto;
 	text-align:center;
-	font-size:200%;
-	width:400;
+	font-size:150%;
+	width:400px;
 }
 
 a {
@@ -41,7 +43,7 @@ button.button2 {
     padding: 10px 30px;
 
 	background-color:#ff8000;
-    color:#ff0000;
+    color:#000040;
 }
 
 header {
@@ -73,6 +75,7 @@ section {
     visibility : hidden;
     content : ".";
 }
+
 article {
     text-align : center;
     font-size : 33px;
@@ -81,5 +84,5 @@ article {
 iframe {
 	border: 5 red;
 	width: 1000;
-	height: 359px ;
+	height: 600;
 }
