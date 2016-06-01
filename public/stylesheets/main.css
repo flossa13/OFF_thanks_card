@@ -1,0 +1,85 @@
+*{
+   margin : 0px;
+   padding : 0px;
+}
+
+body {
+   margin : 10px;
+   padding : 20px;
+
+}
+
+.logout{
+	float:right;
+}
+
+.logo{
+	float: left;
+}
+
+.table1{
+	text-align:center;
+	font-size:200%;
+	width:400;
+}
+
+a {
+	color: #0000ff;
+}
+
+h1 {
+	text-align: center;
+}
+
+button.button2 {
+    /* 文字サイズを1.0emに指定 */
+    font-size: 1.0em;
+    /* 文字の太さをboldに指定 */
+    font-weight: bold;
+    /* 縦方向に10px、
+     * 横方向に30pxの余白を指定 */
+    padding: 10px 30px;
+
+	background-color:#ff8000;
+    color:#ff0000;
+}
+
+header {
+    font-size : 30px;
+    text-align : center;
+    padding : 10px;
+    height : 100px;
+    background-color : #00bfff;
+}
+nav {
+    float : left;
+    text-align : center;
+    width : 25%;
+    height : 390px;
+    font-size : 30px;
+    background-color : #81ff7d;
+}
+section {
+    text-align : center;
+    float : right;
+    width : 73%;
+    height : 390px;
+    background-color : #ffffff;
+}
+.clearfix:after {
+    display : block;
+    clear : both;
+    height : 0px;
+    visibility : hidden;
+    content : ".";
+}
+article {
+    text-align : center;
+    font-size : 33px;
+}
+
+iframe {
+	border: 5 red;
+	width: 1000;
+	height: 359px ;
+}
