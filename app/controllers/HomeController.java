@@ -56,8 +56,9 @@ public class HomeController extends Controller {
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	 String pageName="過去カード一覧";
     	int listkazu=idlist.size();
-    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu));
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu,pageName));
     }
 
 //ソート古い順のページ
@@ -78,8 +79,9 @@ public class HomeController extends Controller {
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	String pageName="過去カード一覧";
     	int listkazu=idlist.size();
-    	return ok(sortOldCard.render(idlist,helplist,sentlist,listkazu));
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu,pageName));
     }
 
   //絞込みA*****************************************************
@@ -100,8 +102,9 @@ public class HomeController extends Controller {
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	 String pageName="A評価一覧";
     	int listkazu=idlist.size();
-    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu,pageName));
     }
 
   //絞込みB*****************************************************
@@ -122,8 +125,9 @@ public class HomeController extends Controller {
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	String pageName="B評価一覧";
     	int listkazu=idlist.size();
-    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu,pageName));
     }
 
   //絞込みC*****************************************************
@@ -144,8 +148,9 @@ public class HomeController extends Controller {
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	 String pageName="C評価一覧";
     	int listkazu=idlist.size();
-    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu,pageName));
     }
 
   //絞込み未評価*****************************************************
@@ -166,51 +171,174 @@ public class HomeController extends Controller {
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	 String pageName="未評価一覧";
     	int listkazu=idlist.size();
-    	return ok(PastCard_ABC.render(idlist,helplist,sentlist,listkazu));
+    	return ok(PastCard.render(idlist,helplist,sentlist,listkazu,pageName));
     }
 
 
- //*********************************************************************************************
+ //rank別集計*********************************************************************************************
+ //top選択画面
     public Result PastCard_resultTop() {
-    	return ok(views.html.PastCard_resultTop.render());
+
+    	return ok(PastCard_resultTop.render());
+    }
+//人事
+    public Result PastCard_result_1() {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> userlist = new ArrayList<>();
+    	ArrayList<String> rankcount = new ArrayList<>();
+
+    	int a=0;
+		int b=0;
+		int c=0;
+    	try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table WHERE division_id = 2 ");
+    		ResultSet rs = Ssql.executeQuery();
+    		PreparedStatement Ssql2 = connection.prepareStatement("select * from thanks_card_table "
+												    				+ "join employee_table "
+												    				+ "on thanks_card_table.send_user_id = employee_table.employee_id "
+												    				+ "where division_id = 2");
+    		ResultSet rs2 = Ssql2.executeQuery();
+    		while (rs.next()) {
+    			userlist.add(rs.getString("employee_namen"));
+    		}
+
+
+    		while (rs2.next()) {
+    			rankcount.add(rs2.getString("rank"));
+    			if(rankcount.equals("a")){
+    				a++;
+    			}else if(rankcount.equals("b")){
+    				b++;
+    			}else{
+    				c++;
+    			}
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	String divName="人事";
+    	return ok(PastCard_result.render(divName,userlist,a,b,c));
     }
 
-    public Result PastCard_result_1() {
-    	return ok(views.html.PastCard_result.render());
-    }
+//総務
     public Result PastCard_result_2() {
-    	return ok(views.html.PastCard_result.render());
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> userlist = new ArrayList<>();
+    	ArrayList<String> rankcount = new ArrayList<>();
+
+    	int a=0;
+		int b=0;
+		int c=0;
+    	try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table WHERE division_id = 3 ");
+    		ResultSet rs = Ssql.executeQuery();
+    		PreparedStatement Ssql2 = connection.prepareStatement("select * from thanks_card_table "
+												    				+ "join employee_table "
+												    				+ "on thanks_card_table.send_user_id = employee_table.employee_id "
+												    				+ "where division_id = 3");
+    		ResultSet rs2 = Ssql2.executeQuery();
+    		while (rs.next()) {
+    			userlist.add(rs.getString("employee_namen"));
+    		}
+
+
+    		while (rs2.next()) {
+    			rankcount.add(rs2.getString("rank"));
+    			if(rankcount.equals("a")){
+    				a++;
+    			}else if(rankcount.equals("b")){
+    				b++;
+    			}else{
+    				c++;
+    			}
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	String divName="総務";
+    	return ok(PastCard_result.render(divName,userlist,a,b,c));
     }
+//システム開発
     public Result PastCard_result_3() {
-    	return ok(views.html.PastCard_result.render());
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> userlist = new ArrayList<>();
+    	ArrayList<String> rankcount = new ArrayList<>();
+
+    	int a=0;
+		int b=0;
+		int c=0;
+    	try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table WHERE division_id = 4 ");
+    		ResultSet rs = Ssql.executeQuery();
+    		PreparedStatement Ssql2 = connection.prepareStatement("select * from thanks_card_table "
+												    				+ "join employee_table "
+												    				+ "on thanks_card_table.send_user_id = employee_table.employee_id "
+												    				+ "where division_id = 4");
+    		ResultSet rs2 = Ssql2.executeQuery();
+    		while (rs.next()) {
+    			userlist.add(rs.getString("employee_namen"));
+    		}
+
+
+    		while (rs2.next()) {
+    			rankcount.add(rs2.getString("rank"));
+    			if(rankcount.equals("a")){
+    				a++;
+    			}else if(rankcount.equals("b")){
+    				b++;
+    			}else{
+    				c++;
+    			}
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	String divName="システム開発";
+    	return ok(PastCard_result.render(divName,userlist,a,b,c));
     }
+//営業
     public Result PastCard_result_4() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_5() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_6() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_7() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_8() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_9() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_10() {
-    	return ok(views.html.PastCard_result.render());
-    }
-    public Result PastCard_result_11() {
-    	return ok(views.html.PastCard_result.render());
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> userlist = new ArrayList<>();
+    	ArrayList<String> rankcount = new ArrayList<>();
+
+    	int a=0;
+		int b=0;
+		int c=0;
+    	try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table WHERE division_id = 5 ");
+    		ResultSet rs = Ssql.executeQuery();
+    		PreparedStatement Ssql2 = connection.prepareStatement("select * from thanks_card_table "
+												    				+ "join employee_table "
+												    				+ "on thanks_card_table.send_user_id = employee_table.employee_id "
+												    				+ "where division_id = 5");
+    		ResultSet rs2 = Ssql2.executeQuery();
+    		while (rs.next()) {
+    			userlist.add(rs.getString("employee_namen"));
+    		}
+
+
+    		while (rs2.next()) {
+    			rankcount.add(rs2.getString("rank"));
+    			if(rankcount.equals("a")){
+    				a++;
+    			}else if(rankcount.equals("b")){
+    				b++;
+    			}else{
+    				c++;
+    			}
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	String divName="営業";
+    	return ok(PastCard_result.render(divName,userlist,a,b,c));
     }
 
 
 
 
 }
+
