@@ -1,44 +1,50 @@
 package models;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import play.db.*;
+import play.db.DB;
 
-	public class Login {
+public class Login {
+	public String username;
+    public String password;
 
-		Connection connection = DB.getConnection();
-		ArrayList<String> namelist = new ArrayList<String>();
-		ArrayList<String> namelist2 = new ArrayList<String>();
-		
-		   	public String eployee_id; 
-		   	public String pass; 
-		    public String validate() {
-		    	
-		    	 try {
-		    			PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table");
-		    			ResultSet rs = Ssql.executeQuery();
-		    			while (rs.next()) {
-		    				
-		    			namelist.add(rs.getString("eployee_id"));
-		    			namelist2.add(rs.getString("pass"));
-		    				
-		    			}
-		    			
-		    		} catch (Exception e) {
-		    			e.printStackTrace();
-		    		}
-		    	
-		    	 if (authenticate(namelist,namelist2) == null) {
-		            return "社員IDとPASSが一致しません";
-		    }
-		        return null;
-		    }
+    public String validate() {
+        if (authenticate(username, password)) {
+            return null;
+        }
+        return "再入力して下さい";
+    }
 
-		    private Boolean authenticate(ArrayList<String> namelist3, ArrayList<String> namelist22) {
-		       // return (id.equals("eployee_id") && pas.equals("pass"));
-		        //return (namelist != null && namelist2 != null);
-		    	return authenticate(namelist, namelist2);
-		    }
-	}
-	
+
+
+    private Boolean authenticate(String username, String password) {
+    	Connection connection = DB.getConnection();
+    	ArrayList<String> pwlist = new ArrayList<>();
+    	ArrayList<String> userlist = new ArrayList<>();
+    	int j=0;
+
+    	 try {
+    		PreparedStatement Ssql = connection.prepareStatement("select *  from employee_table ");
+    		ResultSet rs = Ssql.executeQuery();
+    		while (rs.next()) {
+    			pwlist.add(rs.getString("pass"));
+    			userlist.add(rs.getString("employee_id"));
+    		}
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+
+    	for(int i = 0; i < userlist.size(); i++){
+    		if(userlist.get(i).equals(username)){
+				if(pwlist.get(i).equals(password)){
+					return true;
+				}
+			}
+    	}
+        return false;
+    }
+}
