@@ -19,3 +19,4 @@ POST    /login2       controllers.AuthController.authenticate
 
 GET    /login1      controllers.AuthController.login1
 GET    /login2      controllers.AuthController.login2
+GET    /top      	controllers.AuthController.top

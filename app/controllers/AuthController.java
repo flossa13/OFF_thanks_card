@@ -21,39 +21,16 @@ import play.mvc.*;
 import views.html.*;
 
 public class AuthController extends Controller {
-	Connection connection = DB.getConnection();
-	ArrayList<String> namelist = new ArrayList<String>();
-		
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException{
-
-			    response.setContentType("text/html; charset=Shift_JIS");
-			    PrintWriter out = response.getWriter();
-	
-		String user = request.getParameter("user");
-		String pass = request.getParameter("pass");
-		
-		HttpSession session = request.getSession(true);
-
-		boolean check = authUser(user, pass);
-		 if (check){
-		      /* 認証済みにセット */
-		      session.setAttribute("login", "OK");
-
-		      /* 本来のアクセス先へ飛ばす */
-		      String target = (String)session.getAttribute("target");
-		      response.sendRedirect(target);
-		    }else{
-		      /* 認証に失敗したら、ログイン画面に戻す */
-		      session.setAttribute("status", "Not Auth");
-		      response.sendRedirect("/login1");
-		    }
-	 	}
+		    	
 		@Inject
 		private FormFactory formFactory;
 		
 	    public Result index() {
 	        return ok(index.render("Your new application is ready."));
+	    }
+	    
+	    public Result top() {
+	        return ok(top.render(formFactory.form(Login.class)));
 	    }
 	    
 	    //掲示板ログイン画面
@@ -65,13 +42,17 @@ public class AuthController extends Controller {
 		public Result login2() {
 			return ok(login2.render(formFactory.form(Login.class)));
 	    }
-		
-		protected boolean authUser(String user, String pass){
-		 
-		    if (user == null || user.length() == 0 || pass == null || pass.length() == 0){
-		      return false;
-		    }
+		public Result authenticate() {
+	        Form<Login> form = formFactory.form(Login.class).bindFromRequest();
 
-		    return true;
+	        if (form.hasErrors()) {
+	            return badRequest(login1.render(form));
+	        } else {
+	        	 session().clear();
+	        	 session("eployee_id", form.get().eployee_id);
+	        	 return redirect(
+	        	 routes.AuthController.login1());
+	        }
+		
 	    }	
 		}
