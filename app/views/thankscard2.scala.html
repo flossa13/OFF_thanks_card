@@ -1,15 +1,35 @@
-@(id: Integer,send:String)
-<html>
-	<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-	</head>
-		<body>
-			@common(""){
-			<h1>******** | id | ***********</h1>
+@(id: Integer, send:String, help:String, sent:String)
+@common("詳細内容"){
+	<html>
+		<head>
+		<meta charset="UTF-8">
+		<title>詳細内容</title>
+		<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/thankscard2.css")">
+		</head>
+			<body id="send_screen">
+				<h1>  @send さんからの感謝カードです  </h1>
+				<br>
+				<br>
+				<br>
 
-			@id @send
-			}
-	</body>
-</html>
+				<div>
+				<table class="table1">
+					<tr>
+						<td>
+						<p>
+							<h1>
+								@help
+							</h1>
+							<br>
+							<br>
+						</p>
+							<h1>
+								@sent
+							</h1>
+						</td>
+					</tr>
+				</table>
+				</div>
+			</body>
+	</html>
+}
