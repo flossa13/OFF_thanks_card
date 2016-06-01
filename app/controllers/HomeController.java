@@ -58,7 +58,7 @@ public class HomeController extends Controller {
     	ArrayList<String> readid = new ArrayList<String>();//?????
 
 
-    	String sql = "SELECT thanks_card_table.card_id,thanks_card_table.today,thanks_card_table.receive_user_id, "
+     	String sql = "SELECT thanks_card_table.card_id,thanks_card_table.today,thanks_card_table.receive_user_id, "
     			+ "employee_table.employee_namen,thanks_card_table.help_content,thanks_card_table.sent_content, "
     			+ "thanks_card_table.read_card "
     			+ "FROM thanks_card_table INNER JOIN employee_table "
@@ -164,22 +164,20 @@ public class HomeController extends Controller {
     	Form<Division_Table> division = formFactory.form(Division_Table.class).bindFromRequest();
     	ArrayList<String> sendList = new ArrayList<>();
     	int id = -1;
-    	String send = "", receive = "";
+    	String send = "", receive = "",help = "",sent = "";
+
     	try {
 
     		Thanks_Card_Table newTask = thanks.get();
     		Employee_Table newTask2 = employee.get();
-			 Document document;
-			//Thanks_Card_Table newTask = card.get();
-    		//int id = document.forms.getElementByName("card_id").value;
-			 id = newTask.card_id;
-			 send = newTask2.employee_namen;
-	//		 receive = newTask2.employee_namen;
-    		//sendList.add("employee_namen");
+			id = newTask.card_id;
+			send = newTask2.employee_namen;
+			help = newTask.help_content;
+			sent = newTask.sent_content;
 		 } catch (Exception e) {
 				e.printStackTrace();
 			}
-    	return ok(thankscard2.render(id,send));
+    	return ok(thankscard2.render(id,send,help,sent));
     }
 
 
