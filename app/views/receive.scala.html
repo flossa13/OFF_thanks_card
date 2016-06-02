@@ -1,6 +1,7 @@
 @(cardlist:List[String],datelist:List[String],userlist:List[String]
 ,helplist:List[String],sentlist:List[String],readlist:List[String]
-,count:Integer,namelist:List[String],checklist:List[String])
+,count:Integer,namelist:List[String],checklist:List[String]
+,divisionlist:List[String])
 
 
 <html>
@@ -15,12 +16,10 @@
  	<table border="5" rules="rows" >
 
  	<tr bgcolor="#66FFFF">
-		<td style="font-size:200%">助けた人</td>
-		<td style="font-size:200%">件名</td>
-		<td style="font-size:200%">内容</td>
-		<td style="font-size:200%">助けた日</td>
-		<td style="font-size:200%">詳細</td>
-		<!-- <td style="font-size:200%">返信</td> -->
+		<th style="font-size:200%">助けた人</th>
+		<th style="font-size:200%">件名</th>
+		<th style="font-size:200%">助けた日</th>
+		<th style="font-size:200%">詳細</th>
 	</tr>
 
  		@for(num <- 1 to count){
@@ -31,23 +30,27 @@
 			<tr bgcolor="#00FFFF" >
 			}
 
-			<td style="font-size:200%" >@namelist(num -1)</td>
-			<td style="font-size:200%" >@helplist(num -1)</td>
-			<td style="font-size:200%" >@sentlist(num -1)</td>
-			<td style="font-size:200%" >@datelist(num -1)</td>
+			<td style="font-size:200%" >@divisionlist(num-1)<br>
+										@namelist(num -1)</td>
+			<td style="font-size:200%">@helplist(num -1)</td>
+			<td style="font-size:200%">@datelist(num -1)</td>
 
-			<form action="" method="POST">
-			<td><input type="submit" value="詳細"></td>
 
-		<!-- 	@if(checklist(num-1)=="t"){
- 			 <td><input type="button" value="返信" onclick="window.open('top')"></td>
-			}else{
-			<td>&nbsp;</td>
-			}
-			-->
+			<!--------   カードの詳細情報を渡す ---------------->
+			<form action="@routes.HomeController.card_2()" method="post">
+				<td>
+					<input type="hidden" name="division_namen" value="@divisionlist.get(num -1)"></input>
+					<input type="hidden" name="employee_namen" value="@namelist.get(num -1)"></input>
+					<input type="hidden" name="help_content" value="@helplist.get(num -1)"></input>
+					<input type="hidden" name="sent_content" value="@sentlist.get(num -1)"></input>
+					<input type="hidden" name="today" value="@datelist.get(num -1)"></input>
+
+					<input type="submit" value="詳細">
+			   	</td>
+			 </form>
+
 			</tr>
 		}
-
 	</table>
  </body>
 </html>
